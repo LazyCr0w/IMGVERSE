@@ -24,7 +24,7 @@ function AboutPage() {
     { id: 'technology', label: 'TECHNOLOGY', icon: MdOutlineBuild },
     { id: 'credits', label: 'CREDITS', icon: MdOutlineHandshake }
   ];
-
+//ab
   const features = [
     {
       icon: MdOutlineSearch,
