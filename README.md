@@ -1,333 +1,114 @@
-# IMGVERSE - Multi-Source Image Search Platform
+# IMGVERSE Frontend - Vercel Deployment Guide
 
-![IMGVERSE](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
-![React](https://img.shields.io/badge/React-18.2.0-blue)
-![Node.js](https://img.shields.io/badge/Node.js-18+-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+## 🚀 Quick Deploy to Vercel
 
-> Revolutionizing image discovery through multi-source aggregation, beautiful design, and seamless user experience.
+### Prerequisites
+- Vercel account
+- Backend API deployed and accessible
 
-## 🌟 **Live Demo**
+### Step 1: Deploy to Vercel
+1. Go to [vercel.com](https://vercel.com)
+2. Click "Import Project"
+3. Connect your GitHub repository
+4. Vercel will automatically detect the configuration
 
-- **Frontend**: [imgverse.vercel.app](https://imgverse.vercel.app)
-- **Backend API**: [imgverse-api.vercel.app](https://imgverse-api.vercel.app)
+### Step 2: Configure Environment Variables
+In your Vercel dashboard, go to Project Settings > Environment Variables and add:
 
-## 📋 **Table of Contents**
-
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Quick Start](#-quick-start)
-- [API Endpoints](#-api-endpoints)
-- [Deployment](#-deployment)
-- [Environment Setup](#-environment-setup)
-- [Contributing](#-contributing)
-- [License](#-license)
-
-## ✨ **Features**
-
-### 🎨 **Core Features**
-- **Multi-Source Search**: Unified search across Pexels, Unsplash, and Pixabay
-- **Pinterest-Style Layout**: Beautiful masonry grid with responsive design
-- **Advanced Filtering**: Search by keywords, categories, and sources
-- **High-Quality Images**: Access to millions of professional images
-- **Download Protection**: Legal download system with watermarking
-
-### 🚀 **User Experience**
-- **Lightning Fast**: Optimized performance with lazy loading
-- **Responsive Design**: Perfect on desktop, tablet, and mobile
-- **Infinite Scroll**: Seamless browsing experience
-- **Image Details**: Photographer credits and licensing information
-- **Contact Support**: Built-in contact form with email integration
-
-### 🔧 **Technical Features**
-- **Serverless Backend**: Deployed on Vercel with automatic scaling
-- **API Rate Limiting**: Smart request management across sources
-- **Error Handling**: Graceful error recovery and user feedback
-- **CORS Enabled**: Cross-origin resource sharing configured
-- **Compression**: Response compression for faster loading
-
-## 🛠 **Tech Stack**
-
-### **Frontend**
-- **React 18** - Modern UI framework with hooks
-- **Vite** - Lightning-fast build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Masonry CSS** - Pinterest-style grid layout
-- **React Icons** - Beautiful icon library
-
-### **Backend**
-- **Node.js** - Runtime environment
-- **Express.js** - Web application framework
-- **Axios** - HTTP client for API requests
-- **Nodemailer** - Email service for contact forms
-- **CORS** - Cross-origin resource sharing
-- **Compression** - Response compression middleware
-
-### **APIs**
-- **Pexels API** - High-quality stock photos
-- **Unsplash API** - Beautiful free images
-- **Pixabay API** - Free stock photos and illustrations
-
-### **Deployment**
-- **Vercel** - Frontend and backend deployment
-- **Railway** - Alternative backend deployment
-- **Render** - Additional deployment option
-
-## 🚀 **Quick Start**
-
-### **Prerequisites**
-- Node.js 18+
-- npm or yarn
-- GitHub account (for deployment)
-
-### **Installation**
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/imgverse.git
-   cd imgverse
-   ```
-
-2. **Install dependencies**
-   ```bash
-   # Frontend
-   cd frontend
-   npm install
-
-   # Backend
-   cd ../backend
-   npm install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   # Copy environment templates
-   cp frontend/.env.example frontend/.env
-   cp backend/.env.example backend/.env
-
-   # Edit with your API keys
-   nano backend/.env
-   ```
-
-4. **Start development servers**
-   ```bash
-   # Backend (Terminal 1)
-   cd backend
-   npm run dev
-
-   # Frontend (Terminal 2)
-   cd frontend
-   npm run dev
-   ```
-
-5. **Open your browser**
-   ```
-   http://localhost:5173
-   ```
-
-## 📡 **API Endpoints**
-
-### **Search Images**
-```http
-POST /api/search
-Content-Type: application/json
-
-{
-  "query": "nature",
-  "page": 1,
-  "perPage": 10
-}
+```
+VITE_API_URL=https://your-backend-api-url.com/api
 ```
 
-### **Contact Form**
-```http
-POST /api/contact
-Content-Type: application/json
+Replace `your-backend-api-url.com` with your actual backend URL.
 
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "subject": "Support Request",
-  "message": "Hello, I need help..."
-}
+### Step 3: Deploy
+- Vercel will automatically build and deploy your application
+- Your site will be live at `your-project.vercel.app`
+
+## 📁 Project Structure
+
+```
+frontend/
+├── src/
+│   ├── components/     # React components
+│   ├── hooks/         # Custom React hooks
+│   ├── services/      # API services
+│   └── ...
+├── public/            # Static assets
+├── dist/             # Build output (generated)
+├── vercel.json       # Vercel configuration
+├── .env.example      # Environment variables template
+└── package.json      # Dependencies and scripts
 ```
 
-### **Download Image**
-```http
-GET /api/download?url=https://example.com/image.jpg
-```
+## 🔧 Configuration Files
 
-## 🚀 **Deployment**
+### vercel.json
+- Configures build settings for Vercel
+- Sets up routing for SPA
+- Specifies build commands
 
-### **Frontend (Vercel)**
+### .env.example
+- Template for required environment variables
+- Shows format for API URL configuration
 
-1. **Connect Repository**
-   ```bash
-   # Push to GitHub first
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   ```
+## 🌐 Environment Variables
 
-2. **Deploy to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Vercel auto-detects configuration
-   - Set `VITE_API_URL` environment variable
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_API_URL` | Backend API base URL | `https://api.example.com/api` |
 
-### **Backend (Vercel/Railway)**
+## 🛠️ Development
 
-#### **Option 1: Vercel (Recommended)**
-1. Import backend folder as separate project
-2. Vercel detects `vercel.json` configuration
-3. Set environment variables in dashboard
-
-#### **Option 2: Railway (Easiest)**
-1. Go to [railway.app](https://railway.app)
-2. Connect GitHub repository
-3. Railway auto-detects Node.js project
-4. Set environment variables
-
-## 🔧 **Environment Setup**
-
-### **Required API Keys**
-
-| Service | Website | Cost |
-|---------|---------|------|
-| **Pexels** | [pexels.com/api](https://pexels.com/api) | Free |
-| **Unsplash** | [unsplash.com/developers](https://unsplash.com/developers) | Free |
-| **Pixabay** | [pixabay.com/api/docs](https://pixabay.com/api/docs) | Free |
-
-### **Environment Variables**
-
-#### **Backend (.env)**
 ```bash
-# API Keys
-PEXELS_API_KEY=your_pexels_api_key
-UNSPLASH_ACCESS_KEY=your_unsplash_access_key
-PIXABAY_API_KEY=your_pixabay_api_key
+# Install dependencies
+npm install
 
-# Email Configuration
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
+# Start development server
+npm run dev
 
-# Server
-PORT=3001
-NODE_ENV=production
-```
-
-#### **Frontend (.env)**
-```bash
-VITE_API_URL=https://your-backend-url.com/api
-```
-
-## 🧪 **Testing**
-
-### **API Testing**
-```bash
-# Test search endpoint
-curl -X POST http://localhost:3001/api/search \
-  -H "Content-Type: application/json" \
-  -d '{"query": "cats", "page": 1, "perPage": 5}'
-
-# Test contact endpoint
-curl -X POST http://localhost:3001/api/contact \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Test", "email": "test@example.com", "subject": "Test", "message": "Hello"}'
-```
-
-### **Build Testing**
-```bash
-# Test frontend build
-cd frontend
+# Build for production
 npm run build
 
-# Test backend (if needed)
-cd ../backend
-npm run build
+# Preview production build
+npm run preview
 ```
 
-## 📁 **Project Structure**
+## 📦 Build Output
 
-```
-imgverse/
-├── frontend/                 # React frontend
-│   ├── src/
-│   │   ├── components/       # React components
-│   │   ├── hooks/           # Custom hooks
-│   │   ├── services/        # API services
-│   │   └── ...
-│   ├── public/              # Static assets
-│   ├── vercel.json          # Vercel config
-│   └── package.json
-├── backend/                 # Node.js backend
-│   ├── src/
-│   │   ├── controllers/     # Route handlers
-│   │   ├── services/        # Business logic
-│   │   └── index.js         # Server entry point
-│   ├── vercel.json          # Vercel config
-│   └── package.json
-├── README.md               # This file
-└── .gitignore             # Git ignore rules
-```
+The build process generates:
+- `dist/index.html` - Main HTML file
+- `dist/assets/` - JavaScript, CSS, and static assets
+- Optimized and minified for production
 
-## 🤝 **Contributing**
+## 🔗 API Integration
 
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open a Pull Request**
+The frontend communicates with the backend through:
+- RESTful API calls via `src/services/apiService.js`
+- Environment-based configuration
+- Automatic fallback to localhost for development
 
-### **Development Guidelines**
-- Follow React best practices
-- Use meaningful commit messages
-- Test your changes thoroughly
-- Update documentation as needed
+## 🎯 Deployment Checklist
 
-## 📄 **License**
+- [ ] Backend API is deployed and accessible
+- [ ] `VITE_API_URL` environment variable is set in Vercel
+- [ ] Build completes successfully
+- [ ] All assets are properly loaded
+- [ ] API calls work in production
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+## 🐛 Troubleshooting
 
-## 🙏 **Credits**
+### Build Fails
+- Check that all dependencies are installed
+- Verify environment variables are set correctly
+- Ensure backend API is accessible
 
-### **API Providers**
-- **Pexels** - [pexels.com](https://pexels.com)
-- **Unsplash** - [unsplash.com](https://unsplash.com)
-- **Pixabay** - [pixabay.com](https://pixabay.com)
+### API Calls Fail
+- Verify `VITE_API_URL` is set correctly
+- Check CORS configuration on backend
+- Ensure backend is deployed and running
 
-### **Open Source Libraries**
-- **React** - [reactjs.org](https://reactjs.org)
-- **Express.js** - [expressjs.com](https://expressjs.com)
-- **Tailwind CSS** - [tailwindcss.com](https://tailwindcss.com)
-- **Vite** - [vitejs.dev](https://vitejs.dev)
-
-## 📞 **Support**
-
-- **Issues**: [GitHub Issues](https://github.com/yourusername/imgverse/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/imgverse/discussions)
-- **Email**: support@imgverse.com
-
-## 🎯 **Roadmap**
-
-- [ ] Advanced search filters
-- [ ] Image upload and sharing
-- [ ] User accounts and favorites
-- [ ] Mobile app development
-- [ ] AI-powered image recognition
-- [ ] Multi-language support
-
----
-
-**Made with ❤️ by [Your Name]**
-
-*Revolutionizing image discovery, one search at a time.*
+### Assets Not Loading
+- Check that all files are committed to Git
+- Verify asset paths in components
+- Ensure build process completes successfully
