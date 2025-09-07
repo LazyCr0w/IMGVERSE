@@ -191,7 +191,7 @@ function Header({ onSearch, isLoading, currentPage, onNavigateToHome, onNavigate
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <img
-                src={isMobileMenuOpen ? "/asset/close-icon.svg" : "/asset/menu-icon.svg"}
+                src={isMobileMenuOpen ? "/close-icon.svg" : "/menu-icon.svg"}
                 alt={isMobileMenuOpen ? "Close" : "Menu"}
                 className="w-8 h-8"
               />
@@ -223,7 +223,7 @@ function Header({ onSearch, isLoading, currentPage, onNavigateToHome, onNavigate
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <img
-                src={isMobileMenuOpen ? "/asset/close-icon.svg" : "/asset/menu-icon.svg"}
+                src={isMobileMenuOpen ? "/close-icon.svg" : "/menu-icon.svg"}
                 alt={isMobileMenuOpen ? "Close" : "Menu"}
                 className="w-8 h-8"
               />

@@ -26,7 +26,7 @@ function SearchBar({ onSearch, isLoading, currentPage }) {
             className={`search-btn whitespace-nowrap -mt-1 ${isLoading && currentPage === 1 ? 'loading-hover' : ''}`}
           >
             <img
-              src="/asset/search-icon.svg"
+              src="/search-icon.svg"
               alt="Search"
               className="w-12 h-12 font-bold"
               style={{ filter: 'brightness(0) saturate(100%)' }}

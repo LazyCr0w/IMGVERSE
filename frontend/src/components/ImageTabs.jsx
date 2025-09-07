@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { apiService } from '../services/apiService';
 
 const ImageTabs = ({ onImagesLoaded, onLoadingStart, isLoading, onLoadMore, hasMore, isLoadingMore }) => {
   const [activeTab, setActiveTab] = useState('featured');
@@ -27,15 +28,7 @@ const ImageTabs = ({ onImagesLoaded, onLoadingStart, isLoading, onLoadMore, hasM
 
     if (page === 1) onLoadingStart();
     try {
-      const response = await fetch(`http://localhost:3001/api/search`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query: tab.query, page, perPage: 10 })
-      });
-
-      const data = await response.json();
+      const data = await apiService.searchImages(tab.query, page, 10);
       if (data.results) {
         // Update pagination for this tab
         setTabPages(prev => ({

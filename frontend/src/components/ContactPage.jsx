@@ -31,29 +31,12 @@ function ContactPage() {
     setIsSubmitting(true);
     setSubmitMessage('');
 
-    try {
-      const response = await fetch('http://localhost:3001/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitMessage('Thank you for your message! We\'ll get back to you soon.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitMessage(data.error || 'Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      console.error('Contact form submission error:', error);
-      setSubmitMessage('Failed to send message. Please try again later.');
-    } finally {
+    // Simulate submission delay
+    setTimeout(() => {
+      setSubmitMessage('Thank you for your message! This is a demo - contact form is not functional in client-side mode.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
       setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   return (
