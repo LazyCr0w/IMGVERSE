@@ -12,7 +12,7 @@ export async function submitContactForm(req, res) {
       });
     }
 
-    // Basic email validations
+    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({

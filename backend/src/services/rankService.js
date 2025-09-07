@@ -1,5 +1,5 @@
 export function rankResults(results) {
-  // simple deduplication by src
+  // simple deduplication by the src
   const seen = new Set();
   return results.filter(r => {
     if (seen.has(r.src)) return false;

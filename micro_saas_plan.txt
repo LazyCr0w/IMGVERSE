@@ -1,0 +1,172 @@
+# Full Development Plan – E-commerce Image Search SaaS
+
+## 1. Tech Stack
+- Frontend → React + Vite (UI + chat)
+- Backend → Node.js + Express
+- Scraping → Axios + Cheerio (HTML parsing)
+- LLM → meta-llama/llama-3.3-8b-instruct:free via OpenRouter
+- Database → PostgreSQL (Supabase/Neon)
+- Auth → Supabase Auth
+- Billing → Stripe
+
+## 2. Workflow Overview
+User → React Chat UI
+   → Backend /api/search
+       → Query sent to LLM (rewrite + expand)
+       → Scrapers run with rewritten queries
+       → Dedup + rank results
+       → Cache in DB
+   → Return top N images to frontend
+
+## 3. Backend Code Structure
+backend/
+├── src/
+│   ├── index.js                # Express app entry
+│   ├── controllers/
+│   │   └── searchController.js # Full workflow
+│   ├── services/
+│   │   ├── llmService.js       # Llama-3.3 via OpenRouter
+│   │   ├── scrapers/
+│   │   │   ├── googleScraper.js
+│   │   │   ├── bingScraper.js
+│   │   │   └── index.js
+│   │   └── rankService.js
+│   └── db.js                   # Postgres connection
+
+## 4. LLM Service (llmService.js)
+import fetch from "node-fetch";
+
+export async function rewriteQuery(query) {
+  const response = await fetch("https://openrouter.ai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "meta-llama/llama-3.3-8b-instruct:free",
+      messages: [
+        { role: "system", content: "You rewrite user queries into effective image search queries." },
+        { role: "user", content: query }
+      ]
+    })
+  });
+
+  const data = await response.json();
+  return data.choices[0].message.content.trim();
+}
+
+## 5. Scraper Example (googleScraper.js)
+import axios from "axios";
+import * as cheerio from "cheerio";
+
+export async function googleScraper(query) {
+  const url = `https://www.google.com/search?q=${encodeURIComponent(query)}&tbm=isch`;
+  const { data } = await axios.get(url, { headers: { "User-Agent": "Mozilla/5.0" } });
+
+  const $ = cheerio.load(data);
+  let results = [];
+
+  $("img").each((_, el) => {
+    const src = $(el).attr("src");
+    if (src && src.startsWith("http")) {
+      results.push({ src, alt: query, source: "google" });
+    }
+  });
+
+  return results.slice(0, 10); // top 10 images
+}
+
+## 6. Rank Service (rankService.js)
+export function rankResults(results) {
+  // simple deduplication by src
+  const seen = new Set();
+  return results.filter(r => {
+    if (seen.has(r.src)) return false;
+    seen.add(r.src);
+    return true;
+  });
+}
+
+## 7. Controller – Full Workflow (searchController.js)
+import { rewriteQuery } from "../services/llmService.js";
+import { googleScraper } from "../services/scrapers/googleScraper.js";
+import { rankResults } from "../services/rankService.js";
+
+export async function searchImages(req, res) {
+  try {
+    const { query } = req.body;
+
+    // 1. Rewrite query using LLM
+    const rewritten = await rewriteQuery(query);
+
+    // 2. Run scrapers
+    const googleResults = await googleScraper(rewritten);
+
+    // (later add Bing, AliExpress, etc.)
+    let allResults = [...googleResults];
+
+    // 3. Deduplicate + rank
+    const ranked = rankResults(allResults);
+
+    // 4. Return top results
+    res.json({
+      original: query,
+      rewritten,
+      results: ranked.slice(0, 15),
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Search failed" });
+  }
+}
+
+## 8. Express Entry (index.js)
+import express from "express";
+import bodyParser from "body-parser";
+import { searchImages } from "./controllers/searchController.js";
+
+const app = express();
+app.use(bodyParser.json());
+
+app.post("/api/search", searchImages);
+
+app.listen(4000, () => console.log("Server running on http://localhost:4000"));
+
+## 9. Frontend Flow (React)
+1. Chat Input → User types query.
+2. POST /api/search → Send query to backend.
+3. Display Results → Show rewritten query + image grid.
+
+Example React snippet:
+
+const [query, setQuery] = useState("");
+const [results, setResults] = useState([]);
+
+async function handleSearch() {
+  const res = await fetch("/api/search", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query })
+  });
+  const data = await res.json();
+  setResults(data.results);
+}
+
+return (
+  <div>
+    <input value={query} onChange={e => setQuery(e.target.value)} />
+    <button onClick={handleSearch}>Search</button>
+
+    <div className="grid grid-cols-3 gap-4 mt-4">
+      {results.map((img, i) => (
+        <img key={i} src={img.src} alt={img.alt} className="rounded shadow" />
+      ))}
+    </div>
+  </div>
+);
+
+## 10. SaaS Monetization
+- Free Tier → 10 searches/day
+- Pro ($19/mo) → Unlimited + collections
+- Agency ($99/mo) → Multi-user + API access
