@@ -81,7 +81,7 @@ function ImageCard({ img, index, isExpanded, onToggleExpand }) {
               className="p-2 hover:bg-white hover:bg-opacity-10 rounded transition-colors duration-200"
               title="Download Image"
             >
-              <img src="/asset/download-icon.svg" alt="Download" className="w-6 h-6 filter brightness-0 invert" />
+              <img src="/download-icon.svg" alt="Download" className="w-6 h-6 filter brightness-0 invert" />
             </button>
           </div>
         </div>
