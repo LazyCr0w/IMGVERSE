@@ -86,7 +86,7 @@ export const apiService = {
           console.log(`✅ Found ${results.length} images from ${api.name}`);
           return results;
         } catch (error) {
-          console.log(`❌ ${api.name} API failed:`, error.message);
+          console.log(`❌ ${api.name} API failed:`, error.message, error.response?.status);
           return [];
         }
       });

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { IoDownload } from 'react-icons/io5';
 import { useImageDownload } from '../hooks/useImageDownload';
 import SourceBadge from './SourceBadge';
 
@@ -81,7 +82,7 @@ function ImageCard({ img, index, isExpanded, onToggleExpand }) {
               className="p-2 hover:bg-white hover:bg-opacity-10 rounded transition-colors duration-200"
               title="Download Image"
             >
-              <img src="/download-icon.svg" alt="Download" className="w-6 h-6 filter brightness-0 invert" />
+              <IoDownload className="w-6 h-6" />
             </button>
           </div>
         </div>

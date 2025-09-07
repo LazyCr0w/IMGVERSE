@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { IoSearch } from 'react-icons/io5'
 
 function SearchBar({ onSearch, isLoading, currentPage }) {
   const [query, setQuery] = useState("");
@@ -25,12 +26,7 @@ function SearchBar({ onSearch, isLoading, currentPage }) {
             disabled={isLoading}
             className={`search-btn whitespace-nowrap -mt-1 ${isLoading && currentPage === 1 ? 'loading-hover' : ''}`}
           >
-            <img
-              src="/search-icon.svg"
-              alt="Search"
-              className="w-12 h-12 font-bold"
-              style={{ filter: 'brightness(0) saturate(100%)' }}
-            />
+            <IoSearch className="w-8 h-8 font-bold" />
           </button>
         </div>
       </form>

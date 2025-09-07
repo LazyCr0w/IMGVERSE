@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { IoMenu, IoClose } from 'react-icons/io5'
 import SearchBar from './SearchBar'
 
 function Header({ onSearch, isLoading, currentPage, onNavigateToHome, onNavigateToAbout, onNavigateToContact, currentView }) {
@@ -190,11 +191,7 @@ function Header({ onSearch, isLoading, currentPage, onNavigateToHome, onNavigate
               className="p-2 hover:bg-gray-100 rounded transition-colors"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
-              <img
-                src={isMobileMenuOpen ? "/close-icon.svg" : "/menu-icon.svg"}
-                alt={isMobileMenuOpen ? "Close" : "Menu"}
-                className="w-8 h-8"
-              />
+              {isMobileMenuOpen ? <IoClose className="w-8 h-8" /> : <IoMenu className="w-8 h-8" />}
             </button>
           </div>
         </div>
@@ -222,11 +219,7 @@ function Header({ onSearch, isLoading, currentPage, onNavigateToHome, onNavigate
               className="p-2 hover:bg-gray-100 rounded transition-colors"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
-              <img
-                src={isMobileMenuOpen ? "/close-icon.svg" : "/menu-icon.svg"}
-                alt={isMobileMenuOpen ? "Close" : "Menu"}
-                className="w-8 h-8"
-              />
+              {isMobileMenuOpen ? <IoClose className="w-8 h-8" /> : <IoMenu className="w-8 h-8" />}
             </button>
           </div>
         </div>
