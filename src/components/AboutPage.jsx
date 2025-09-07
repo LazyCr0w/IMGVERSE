@@ -295,7 +295,7 @@ function AboutPage() {
                 <div className="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
                   <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <img
-                      src="/asset/Pexels_logo.svg"
+                      src="/Pexels_logo.svg"
                       alt="Pexels Logo"
                       className="w-full h-full object-contain"
                     />
@@ -318,7 +318,7 @@ function AboutPage() {
                 <div className="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
                   <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <img
-                      src="/asset/unsplash-2.svg"
+                      src="/unsplash-2.svg"
                       alt="Unsplash Logo"
                       className="w-full h-full object-contain"
                     />
@@ -341,7 +341,7 @@ function AboutPage() {
                 <div className="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
                   <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <img
-                      src="/asset/Pixabay-logo.svg"
+                      src="/Pixabay-logo.svg"
                       alt="Pixabay Logo"
                       className="w-full h-full object-contain"
                     />
