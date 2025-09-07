@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Pixel Font for Minimalist Design */
+body {
+  font-family: 'Pixelify Sans', sans-serif;
+  background-color: #fafafa;
+  color: #2d3748;
+  line-height: 1.6;
+}
+
+/* Clean Pixel Button Styles */
+.minimal-btn {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 200;
+  padding: 0.5rem 1rem;
+  border: 2px solid #e2e8f0;
+  background: transparent;
+  color: #4a5568;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.minimal-btn:hover {
+  border-color: #000000;
+  color: #ffffff;
+  background: rgb(0, 0, 0);
+}
+
+/* Clean Search Button - No Borders or Hover Effects */
+.search-btn {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 0.7rem;
+  padding: 0.5rem 0.5rem;
+  background: transparent;
+  color: #4a5568;
+  transition: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  border: none;
+}
+
+.search-btn:hover {
+  background: transparent;
+  color: #4a5568;
+  transform: none;
+}
+
+.search-btn:focus {
+  outline: none;
+}
+
+/* Minimalist Input Styles */
+.minimal-input {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.8rem;
+  border: 2px solid #e2e8f0;
+  background: #ffffff;
+  color: #2d3748;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+.minimal-input:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+/* Clean Card Styles */
+.minimal-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.minimal-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Whitespace-focused Layout */
+.minimal-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Masonry Grid Styles */
+.pixel-grid {
+  display: flex;
+  margin-left: -2rem; /* gutter size offset */
+  width: auto;
+}
+
+.pixel-column {
+  padding-left: 2rem; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .pixel-grid {
+    margin-left: -1rem;
+  }
+
+  .pixel-column {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pixel-grid {
+    margin-left: -0.5rem;
+  }
+
+  .pixel-column {
+    padding-left: 0.5rem;
+  }
+}
+
+/* Clean Modal */
+.minimal-modal {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Subtle Animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading Hover Animation */
+@keyframes loadingHover {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.loading-hover {
+  animation: loadingHover 1.5s ease-in-out infinite;
+}
